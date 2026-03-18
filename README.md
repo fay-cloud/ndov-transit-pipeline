@@ -20,6 +20,16 @@ See docs/architecture.md
 - Streaming Layer: Apache Kafka + Apache Flink
 - CI/CD: GitHub Actions
 - Containerization: Docker
+## Dashboard Tiles
 
+Tile 1: Route coverage by operator
+  Source table: mart_route_coverage
+  Tool: Power BI
+  Chart type: Map or bar chart showing routes per operator
+
+Tile 2: Trip volume by time of day and day of week
+  Source table: mart_trip_volume_by_hour
+  Tool: Power BI
+  Chart type: Heatmap showing busiest hours across the week
 ## Setup
 Instructions coming as the project progresses.
