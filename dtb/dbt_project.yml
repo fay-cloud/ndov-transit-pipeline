@@ -1,0 +1,16 @@
+name: 'ndov_transit'
+version: '1.0.0'
+config-version: 2
+
+profile: 'ndov_transit'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  ndov_transit:
+    staging:
+      materialized: view
+    marts:
+      materialized: table
