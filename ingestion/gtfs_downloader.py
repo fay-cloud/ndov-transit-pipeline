@@ -18,7 +18,6 @@ AZURE_STORAGE_ACCOUNT_NAME = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
 AZURE_STORAGE_ACCOUNT_KEY = os.getenv("AZURE_STORAGE_ACCOUNT_KEY")
 AZURE_CONTAINER_NAME = os.getenv("AZURE_CONTAINER_NAME")
 
-# These are the GTFS files we want to extract and store
 GTFS_FILES = [
     "agency.txt",
     "routes.txt",
@@ -80,10 +79,32 @@ def upload_to_azure(parquet_files: dict, date_partition: str) -> None:
         logger.info(f"Uploaded: {AZURE_CONTAINER_NAME}/{blob_name}")
 
 
+def files_exist_in_azure(date_partition: str) -> bool:
+    """Check if today's Parquet files already exist in Azure."""
+    connection_string = (
+        f"DefaultEndpointsProtocol=https;"
+        f"AccountName={AZURE_STORAGE_ACCOUNT_NAME};"
+        f"AccountKey={AZURE_STORAGE_ACCOUNT_KEY};"
+        f"EndpointSuffix=core.windows.net"
+    )
+    client = BlobServiceClient.from_connection_string(connection_string)
+    blob_name = f"raw/gtfs/{date_partition}/agency.parquet"
+    blob_client = client.get_blob_client(
+        container=AZURE_CONTAINER_NAME,
+        blob=blob_name
+    )
+    return blob_client.exists()
+
+
 def run():
     """Main entry point called by Airflow."""
     date_partition = datetime.utcnow().strftime("%Y/%m/%d")
     logger.info(f"Starting GTFS ingestion for partition: {date_partition}")
+
+    if files_exist_in_azure(date_partition):
+        logger.info(f"Files already exist for {date_partition}. Skipping download.")
+        return
+
     zip_bytes = download_gtfs_zip()
     parquet_files = extract_and_convert_to_parquet(zip_bytes)
     upload_to_azure(parquet_files, date_partition)

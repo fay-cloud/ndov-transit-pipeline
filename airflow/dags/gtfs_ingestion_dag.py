@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 import sys
 
 sys.path.insert(0, "/opt/airflow/ingestion")
@@ -26,12 +27,12 @@ default_args = {
 
 with DAG(
     dag_id="gtfs_ingestion",
-    description="Download GTFS Static data from OVapi, store as Parquet in Azure and load into Snowflake",
+    description="Download GTFS Static data from OVapi, store as Parquet in Azure and load into Snowflake, then run dbt",
     default_args=default_args,
     start_date=datetime(2026, 1, 1),
     schedule_interval="0 6 * * *",
     catchup=False,
-    tags=["gtfs", "ingestion", "azure", "snowflake"],
+    tags=["gtfs", "ingestion", "azure", "snowflake", "dbt"],
 ) as dag:
 
     ingest_gtfs = PythonOperator(
@@ -44,4 +45,9 @@ with DAG(
         python_callable=run_snowflake_load,
     )
 
-    ingest_gtfs >> load_to_snowflake
+    run_dbt = BashOperator(
+        task_id="run_dbt_models",
+        bash_command="cd /opt/airflow/dbt && dbt run --no-partial-parse",
+    )
+
+    ingest_gtfs >> load_to_snowflake >> run_dbt
