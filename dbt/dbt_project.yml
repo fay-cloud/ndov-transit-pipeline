@@ -1,4 +1,4 @@
-name: 'ndov_transit'
+﻿name: 'ndov_transit'
 version: '1.0.0'
 config-version: 2
 
@@ -11,6 +11,6 @@ clean-targets: ["target", "dbt_packages"]
 models:
   ndov_transit:
     staging:
-      materialized: view
+      +materialized: view
     marts:
-      materialized: table
+      +materialized: table

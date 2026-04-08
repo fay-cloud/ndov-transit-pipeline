@@ -39,7 +39,7 @@ services:
     <<: *airflow-common
     command: bash -c "airflow db migrate && airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
     restart: on-failure
-    
+
   airflow-webserver:
     <<: *airflow-common
     command: webserver
@@ -51,6 +51,7 @@ services:
     <<: *airflow-common
     command: scheduler
     restart: always
+
 
 volumes:
   postgres-db:

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw
+    database: NDOV_DB
+    schema: RAW
+    tables:
+      - name: raw_agency
+      - name: raw_routes
+      - name: raw_stops
+      - name: raw_trips
+      - name: raw_stop_times
+      - name: raw_calendar_dates
+      - name: raw_feed_info
