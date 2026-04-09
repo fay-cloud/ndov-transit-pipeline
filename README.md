@@ -17,6 +17,15 @@ public transport operators including NS (Nederlandse Spoorwegen), GVB
 (Gemeentelijk Vervoerbedrijf Amsterdam), RET (Rotterdamsche Elektrische Tram),
 HTM (Haagsche Tramweg Maatschappij), Arriva, Connexxion, Qbuzz and 35 others.
 
+## Dashboard Preview
+![NDOV Dutch Public Transport Dashboard](docs/pipeline_dasboard.png)
+
+The dashboard provides two interactive tiles:
+- **Tile 1:** Route coverage by operator across the Netherlands,
+  filterable by transport type (Bus, Train, Tram, Ferry)
+- **Tile 2:** Trip volume heatmap showing when the Dutch public
+  transport network is busiest by hour and day of week
+
 ## Pipeline Architecture
 ![Pipeline Architecture](docs/pipeline_image.png)
 
@@ -222,4 +231,5 @@ Every push to main or pull request triggers GitHub Actions which:
 - Validates Python syntax on ingestion scripts
 
 ## Author
+Fayomi Kehinde A.
 Built as a capstone project for the DataTalks.Club Data Engineering Zoomcamp.
