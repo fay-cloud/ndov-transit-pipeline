@@ -115,7 +115,6 @@ mart_route_coverage         Routes per operator by type (41 rows)
 mart_trip_volume_by_hour    Trip volume by hour and day (168 rows)
 
 ## Project Folder Structure
-## Project Folder Structure
 
 ```
 ndov-transit-pipeline/
@@ -234,4 +233,5 @@ Every push to main or pull request triggers GitHub Actions which:
 
 ## Author
 Fayomi Kehinde A.
+
 Built as a capstone project for the DataTalks.Club Data Engineering Zoomcamp.
