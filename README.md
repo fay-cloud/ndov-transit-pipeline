@@ -232,6 +232,6 @@ Every push to main or pull request triggers GitHub Actions which:
 - Validates Python syntax on ingestion scripts
 
 ## Author
-Fayomi Kehinde A.
+Fayomi Kehinde Adeseun
 
 Built as a capstone project for the DataTalks.Club Data Engineering Zoomcamp.
