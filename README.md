@@ -18,7 +18,8 @@ public transport operators including NS (Nederlandse Spoorwegen), GVB
 HTM (Haagsche Tramweg Maatschappij), Arriva, Connexxion, Qbuzz and 35 others.
 
 ## Dashboard Preview
-![NDOV Dutch Public Transport Dashboard](docs/pipeline_dasboard.png)
+
+![NDOV Dutch Public Transport Dashboard](docs/dashboard_preview.png)
 
 The dashboard provides two interactive tiles:
 - **Tile 1:** Route coverage by operator across the Netherlands,
@@ -26,8 +27,9 @@ The dashboard provides two interactive tiles:
 - **Tile 2:** Trip volume heatmap showing when the Dutch public
   transport network is busiest by hour and day of week
 
-## Pipeline Architecture
+  ## Pipeline Architecture
 ![Pipeline Architecture](docs/pipeline_image.png)
+
 
 ## Problem Statement
 Build a dashboard with two tiles that answer the following questions:
