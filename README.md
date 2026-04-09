@@ -17,6 +17,9 @@ public transport operators including NS (Nederlandse Spoorwegen), GVB
 (Gemeentelijk Vervoerbedrijf Amsterdam), RET (Rotterdamsche Elektrische Tram),
 HTM (Haagsche Tramweg Maatschappij), Arriva, Connexxion, Qbuzz and 35 others.
 
+## Pipeline Architecture
+![Pipeline Architecture](docs/pipeline_image.png)
+
 ## Problem Statement
 Build a dashboard with two tiles that answer the following questions:
 1. Which Dutch public transport operators cover the most routes and what types
