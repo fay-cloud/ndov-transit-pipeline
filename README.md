@@ -105,48 +105,57 @@ ndov-transit-pipeline/
 │
 ├── airflow/
 │   ├── dags/
-│   │   ├── gtfs_ingestion_dag.py   # Main Airflow DAG with three tasks
-│   │   └── snowflake_load.py       # Snowflake loading logic
-│   └── plugins/                    # Custom Airflow operators (reserved)
+│   │   ├── gtfs_ingestion_dag.py     # Orchestrates data pipeline tasks
+│   │   └── snowflake_load.py         # Loads data into Snowflake
+│   │   └── __pycache__/              # Python cache files
+│   └── plugins/                      # Custom Airflow extensions
 │
 ├── dbt/
+│   ├── dbt_packages/                 # Installed dbt dependencies
+│   ├── logs/                         # dbt run logs
 │   ├── macros/
-│   │   └── generate_schema_name.sql # Overrides dbt schema naming behaviour
+│   │   └── generate_schema_name.sql  # Custom schema naming logic
 │   ├── models/
-│   │   ├── staging/                 # Six staging models and sources.yml
-│   │   └── marts/                   # Two mart models for dashboard
-│   ├── tests/                       # dbt data quality tests
-│   └── dbt_project.yml              # dbt project configuration
+│   │   ├── marts/
+│   │   │   ├── mart_route_coverage.sql        # Route coverage metrics
+│   │   │   └── mart_trip_volume_by_hour.sql   # Trip volume analysis
+│   │   └── staging/
+│   │       ├── sources.yml           # Source data definitions
+│   │       ├── stg_agency.sql        # Clean agency data
+│   │       ├── stg_calendar_dates.sql# Clean calendar data
+│   │       ├── stg_routes.sql        # Clean routes data
+│   │       ├── stg_stop_times.sql    # Clean stop times data
+│   │       ├── stg_stops.sql         # Clean stops data
+│   │       └── stg_trips.sql         # Clean trips data
+│   ├── target/                       # Compiled dbt outputs
+│   └── dbt_project.yml               # dbt configuration
 │
 ├── ingestion/
-│   └── gtfs_downloader.py           # Downloads GTFS, converts to Parquet,
-│                                    # uploads to Azure Data Lake
-│
-├── infrastructure/
-│   └── azure/                       # Azure resource configurations
+│   ├── gtfs_downloader.py            # Downloads and uploads GTFS data
+│   └── __pycache__/                  # Python cache files
 │
 ├── docker/
 │   └── airflow/
-│       └── Dockerfile               # Custom Airflow image with dependencies
+│       └── Dockerfile                # Airflow container setup
 │
 ├── dashboard/
-│   └── ndov_dashboard.pbix          # Power BI dashboard file
+│   └── ndov_dashboard.pbix           # Power BI dashboard
 │
-├── kafka/
-│   └── docker-compose.yml           # Kafka setup (not used in active pipeline)
+├── docs/
+│   └── architecture.md               # System architecture docs
 │
 ├── .github/
 │   └── workflows/
-│       └── ci.yml                   # GitHub Actions CI/CD pipeline
+│       └── ci.yml                    # CI pipeline automation
 │
-├── docs/
-│   └── architecture.md              # Full architecture documentation
-│
-├── .env.example                     # Template for environment variables
-├── .gitignore                       # Excludes secrets and generated files
-├── docker-compose.yml               # Runs Airflow locally using Docker
-├── requirements.txt                 # Python dependencies
-└── README.md                        # This file
+├── .venv/                            # Virtual environment
+├── .env                              # Environment variables
+├── .env.example                      # Env template
+├── .gitignore                        # Ignore rules
+├── docker-compose.yml                # Runs services locally
+├── requirements.txt                  # Python dependencies
+├── LICENSE                           # License file
+└── README.md                         # Project overview
 
 ## Glossary
 
