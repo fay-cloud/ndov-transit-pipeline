@@ -1,0 +1,14 @@
+ndov_transit:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: dummy_account
+      user: dummy_user
+      password: dummy_password
+      role: dummy_role
+      warehouse: dummy_warehouse
+      database: NDOV_DB
+      schema: STAGING
+      threads: 1
+      client_session_keep_alive: False

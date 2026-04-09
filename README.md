@@ -101,61 +101,60 @@ mart_route_coverage         Routes per operator by type (41 rows)
 mart_trip_volume_by_hour    Trip volume by hour and day (168 rows)
 
 ## Project Folder Structure
+## Project Folder Structure
+
+```
 ndov-transit-pipeline/
 │
 ├── airflow/
 │   ├── dags/
 │   │   ├── gtfs_ingestion_dag.py     # Orchestrates data pipeline tasks
 │   │   └── snowflake_load.py         # Loads data into Snowflake
-│   │   └── __pycache__/              # Python cache files
 │   └── plugins/                      # Custom Airflow extensions
 │
 ├── dbt/
 │   ├── dbt_packages/                 # Installed dbt dependencies
 │   ├── logs/                         # dbt run logs
 │   ├── macros/
-│   │   └── generate_schema_name.sql  # Custom schema naming logic
+│   │   └── generate_schema_name.sql  # Custom schema logic
 │   ├── models/
 │   │   ├── marts/
-│   │   │   ├── mart_route_coverage.sql        # Route coverage metrics
-│   │   │   └── mart_trip_volume_by_hour.sql   # Trip volume analysis
+│   │   │   ├── mart_route_coverage.sql
+│   │   │   └── mart_trip_volume_by_hour.sql
 │   │   └── staging/
-│   │       ├── sources.yml           # Source data definitions
-│   │       ├── stg_agency.sql        # Clean agency data
-│   │       ├── stg_calendar_dates.sql# Clean calendar data
-│   │       ├── stg_routes.sql        # Clean routes data
-│   │       ├── stg_stop_times.sql    # Clean stop times data
-│   │       ├── stg_stops.sql         # Clean stops data
-│   │       └── stg_trips.sql         # Clean trips data
-│   ├── target/                       # Compiled dbt outputs
-│   └── dbt_project.yml               # dbt configuration
+│   │       ├── sources.yml
+│   │       ├── stg_agency.sql
+│   │       ├── stg_calendar_dates.sql
+│   │       ├── stg_routes.sql
+│   │       ├── stg_stop_times.sql
+│   │       ├── stg_stops.sql
+│   │       └── stg_trips.sql
+│   ├── target/
+│   └── dbt_project.yml
 │
 ├── ingestion/
-│   ├── gtfs_downloader.py            # Downloads and uploads GTFS data
-│   └── __pycache__/                  # Python cache files
+│   └── gtfs_downloader.py
 │
 ├── docker/
 │   └── airflow/
-│       └── Dockerfile                # Airflow container setup
+│       └── Dockerfile
 │
 ├── dashboard/
-│   └── ndov_dashboard.pbix           # Power BI dashboard
+│   └── ndov_dashboard.pbix
 │
 ├── docs/
-│   └── architecture.md               # System architecture docs
+│   └── architecture.md
 │
 ├── .github/
 │   └── workflows/
-│       └── ci.yml                    # CI pipeline automation
+│       └── ci.yml
 │
-├── .venv/                            # Virtual environment
-├── .env                              # Environment variables
-├── .env.example                      # Env template
-├── .gitignore                        # Ignore rules
-├── docker-compose.yml                # Runs services locally
-├── requirements.txt                  # Python dependencies
-├── LICENSE                           # License file
-└── README.md                         # Project overview
+├── .env.example
+├── .gitignore
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+```
 
 ## Glossary
 
